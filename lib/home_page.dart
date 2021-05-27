@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'rest_api_page.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -30,9 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
         if (orientation == Orientation.portrait) {
           return Flex(
             direction: Axis.vertical,
+
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('$_counter'),
+              RestApiPage(),
               FloatingActionButton(
                   onPressed: _incrementCounter,
                   tooltip: 'Increment',
@@ -45,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('$_counter'),
+              RestApiPage(),
               FloatingActionButton(
                   onPressed: _incrementCounter,
                   tooltip: 'Increment',
