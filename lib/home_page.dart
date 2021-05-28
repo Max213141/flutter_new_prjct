@@ -29,31 +29,35 @@ class _MyHomePageState extends State<MyHomePage> {
       child: OrientationBuilder(
           builder: (BuildContext context, Orientation orientation) {
         if (orientation == Orientation.portrait) {
-          return Flex(
-            direction: Axis.vertical,
+          return Material(
+            child: Flex(
+              direction: Axis.vertical,
 
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('$_counter'),
-              RestApiPage(),
-              FloatingActionButton(
-                  onPressed: _incrementCounter,
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add)),
-            ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$_counter'),
+                RestApiPage(),
+                FloatingActionButton(
+                    onPressed: _incrementCounter,
+                    tooltip: 'Increment',
+                    child: Icon(Icons.add)),
+              ],
+            ),
           );
         } else {
-          return Flex(
-            direction: Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('$_counter'),
-              RestApiPage(),
-              FloatingActionButton(
-                  onPressed: _incrementCounter,
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add)),
-            ],
+          return Material(
+              child: Flex(
+                direction: Axis.vertical,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('$_counter'),
+                  RestApiPage(),
+                  FloatingActionButton(
+                      onPressed: _incrementCounter,
+                      tooltip: 'Increment',
+                      child: Icon(Icons.add)),
+                ],
+              ),
           );
         }
       }),

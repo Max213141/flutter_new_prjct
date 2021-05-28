@@ -8,16 +8,6 @@ import 'dart:io';
 class RestApiPage extends StatefulWidget {
   const RestApiPage({Key? key}) : super(key: key);
 
-  Future<Album> fetchAlbum() async {
-    final response =
-    await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-    if (response.statusCode == 200) {
-      return Album.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to load album');
-    }
-  }
-
   @override
   _RestApiPageState createState() => _RestApiPageState();
 }
@@ -28,8 +18,7 @@ class _RestApiPageState extends State<RestApiPage> {
   String ref = 'https://jsonplaceholder.typicode.com/albums/1';
 
   Future<Album> fetchAlbum() async {
-    final response =
-    await http.get(Uri.parse(ref));
+    final response = await http.get(Uri.parse(ref));
     if (response.statusCode == 200) {
       return Album.fromJson(jsonDecode(response.body));
     } else {
@@ -38,7 +27,6 @@ class _RestApiPageState extends State<RestApiPage> {
   }
 
   @override
-
   void initState() {
     super.initState();
     futureAlbum = fetchAlbum();
@@ -46,23 +34,33 @@ class _RestApiPageState extends State<RestApiPage> {
 
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: [
-          FutureBuilder<Album>(
-            future: futureAlbum,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.title);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-
-              // By default, show a loading spinner.
-              return CircularProgressIndicator();
-            },
+        child: Column(
+      children: [
+        Container(
+          child: TextField(
+            controller: TextEditingController(
+              text: ref,
+            ),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter a search term',
+            ),
           ),
-        ],
-      )
-    );
+        ),
+        FutureBuilder<Album>(
+          future: futureAlbum,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data!.title);
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+
+            // By default, show a loading spinner.
+            return CircularProgressIndicator();
+          },
+        ),
+      ],
+    ));
   }
 }
