@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'classes/album_class.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +19,13 @@ class _RestApiPageState extends State<RestApiPage> {
 
   String ref = 'https://jsonplaceholder.typicode.com/albums/1';
 
-  Future<Album> fetchAlbum() async {
+  var _controller = TextEditingController(
+    text: 'https://jsonplaceholder.typicode.com/albums/1',
+  );
+
+
+
+  Future<Album> fetchAlbum(ref) async {
     final response = await http.get(Uri.parse(ref));
     if (response.statusCode == 200) {
       return Album.fromJson(jsonDecode(response.body));
@@ -29,7 +37,20 @@ class _RestApiPageState extends State<RestApiPage> {
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureAlbum = fetchAlbum(ref);
+    _controller.addListener(changeRef);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void changeRef() {
+    print('res: ${_controller.text}');
+    ref = _controller.text;
+    fetchAlbum(ref);
   }
 
   Widget build(BuildContext context) {
@@ -38,9 +59,7 @@ class _RestApiPageState extends State<RestApiPage> {
       children: [
         Container(
           child: TextField(
-            controller: TextEditingController(
-              text: ref,
-            ),
+            controller: _controller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'Enter a search term',
@@ -51,12 +70,16 @@ class _RestApiPageState extends State<RestApiPage> {
           future: futureAlbum,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data!.title);
+              print(snapshot.data);
+              return Text(
+                snapshot.data!.title,
+                style: TextStyle(
+                    fontFamily: 'IndieFlower'
+                ),
+              );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-
-            // By default, show a loading spinner.
             return CircularProgressIndicator();
           },
         ),

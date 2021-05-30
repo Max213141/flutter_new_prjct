@@ -35,7 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('$_counter'),
+                Text(
+                    '$_counter',
+                  style: TextStyle(
+                    fontSize: 21,
+                    backgroundColor: Colors.grey,
+                  ),
+                ),
                 RestApiPage(),
                 FloatingActionButton(
                     onPressed: _incrementCounter,
@@ -50,10 +56,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 direction: Axis.vertical,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('$_counter'),
+                  Text(
+                    '$_counter',
+                    style: TextStyle(
+                      fontSize: 21,
+                      backgroundColor: Colors.grey,
+                    ),
+                  ),
                   RestApiPage(),
                   FloatingActionButton(
                       onPressed: _incrementCounter,
+                      backgroundColor: Colors.redAccent,
                       tooltip: 'Increment',
                       child: Icon(Icons.add)),
                 ],
