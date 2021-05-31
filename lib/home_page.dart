@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:own_project/stateless/stls_button.dart';
+import 'package:own_project/stateless/stls_img.dart';
 import 'rest_api_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                IMG(),
                 Text(
                     '$_counter',
                   style: TextStyle(
@@ -46,7 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 FloatingActionButton(
                     onPressed: _incrementCounter,
                     tooltip: 'Increment',
-                    child: Icon(Icons.add)),
+                    child: Icon(Icons.add)
+                ),
+                But_ton()
               ],
             ),
           );

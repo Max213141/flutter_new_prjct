@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
+import 'stateless/stls_img.dart';
+
 void main() {
   runApp(MyApp());
   // useFuture();
@@ -27,7 +29,9 @@ class MyApp extends StatelessWidget {
           )
 
         ),
-          body: MyHomePage(title: 'Strange name')
+          body: Container(
+            child: MyHomePage(title: 'Strange name')
+          )
       ),
     );
   }
