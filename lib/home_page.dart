@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:own_project/stateless/stls_button.dart';
 import 'package:own_project/stateless/stls_img.dart';
 import 'rest_api_page.dart';
+import 'stateless/stls_grid.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -46,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RestApiPage(),
+                GridForSudoku(),
                 FloatingActionButton(
                     onPressed: _incrementCounter,
                     tooltip: 'Increment',

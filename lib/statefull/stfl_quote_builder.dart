@@ -1,0 +1,1 @@
+import '../classes/quot_class.dart';

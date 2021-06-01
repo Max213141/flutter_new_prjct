@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-import 'stateless/stls_img.dart';
+import 'stateless/stls_grid.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
           )
 
         ),
-          body: Container(
-            child: MyHomePage(title: 'Strange name')
+          body: ListView(
+            children:[MyHomePage(title: 'Strange name')],
           )
       ),
     );
